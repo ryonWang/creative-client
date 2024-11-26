@@ -1,0 +1,525 @@
+.ant-spin {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #000000d9;
+    font-size: .14rem;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: "tnum","tnum";
+    position: absolute;
+    display: none;
+    color: #1890ff;
+    font-size: 0;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0;
+    transition: transform .3s cubic-bezier(.78,.14,.15,.86)
+}
+
+.ant-spin-spinning {
+    position: static;
+    display: inline-block;
+    opacity: 1
+}
+
+.ant-spin-nested-loading {
+    position: relative
+}
+
+.ant-spin-nested-loading>div>.ant-spin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 4rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin .ant-spin-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -.1rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin .ant-spin-text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    padding-top: .05rem;
+    font-size: .14rem;
+    text-shadow: 0 .01rem .02rem #fff
+}
+
+.ant-spin-nested-loading>div>.ant-spin.ant-spin-show-text .ant-spin-dot {
+    margin-top: -.2rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-sm .ant-spin-dot {
+    margin: -.07rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-sm .ant-spin-text {
+    padding-top: .02rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-sm.ant-spin-show-text .ant-spin-dot {
+    margin-top: -.17rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-lg .ant-spin-dot {
+    margin: -.16rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-lg .ant-spin-text {
+    padding-top: .11rem
+}
+
+.ant-spin-nested-loading>div>.ant-spin-lg.ant-spin-show-text .ant-spin-dot {
+    margin-top: -.26rem
+}
+
+.ant-spin-container {
+    position: relative;
+    transition: opacity .3s
+}
+
+.ant-spin-container:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none \ ;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    transition: all .3s;
+    content: "";
+    pointer-events: none
+}
+
+.ant-spin-blur {
+    clear: both;
+    opacity: .5;
+    user-select: none;
+    pointer-events: none
+}
+
+.ant-spin-blur:after {
+    opacity: .4;
+    pointer-events: auto
+}
+
+.ant-spin-tip {
+    color: #00000073
+}
+
+.ant-spin-dot {
+    position: relative;
+    display: inline-block;
+    font-size: .2rem;
+    width: 1em;
+    height: 1em
+}
+
+.ant-spin-dot-item {
+    position: absolute;
+    display: block;
+    width: .09rem;
+    height: .09rem;
+    background-color: #1890ff;
+    border-radius: 100%;
+    transform: scale(.75);
+    transform-origin: 50% 50%;
+    opacity: .3;
+    animation: antSpinMove 1s infinite linear alternate
+}
+
+.ant-spin-dot-item:nth-child(1) {
+    top: 0;
+    left: 0
+}
+
+.ant-spin-dot-item:nth-child(2) {
+    top: 0;
+    right: 0;
+    animation-delay: .4s
+}
+
+.ant-spin-dot-item:nth-child(3) {
+    right: 0;
+    bottom: 0;
+    animation-delay: .8s
+}
+
+.ant-spin-dot-item:nth-child(4) {
+    bottom: 0;
+    left: 0;
+    animation-delay: 1.2s
+}
+
+.ant-spin-dot-spin {
+    transform: rotate(0);
+    animation: antRotate 1.2s infinite linear
+}
+
+.ant-spin-sm .ant-spin-dot {
+    font-size: .14rem
+}
+
+.ant-spin-sm .ant-spin-dot i {
+    width: .06rem;
+    height: .06rem
+}
+
+.ant-spin-lg .ant-spin-dot {
+    font-size: .32rem
+}
+
+.ant-spin-lg .ant-spin-dot i {
+    width: .14rem;
+    height: .14rem
+}
+
+.ant-spin.ant-spin-show-text .ant-spin-text {
+    display: block
+}
+
+@media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
+    .ant-spin-blur {
+        background: #fff;
+        opacity: .5
+    }
+}
+
+@keyframes antSpinMove {
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes antRotate {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.ant-spin-rtl {
+    direction: rtl
+}
+
+.ant-spin-rtl .ant-spin-dot-spin {
+    transform: rotate(-45deg);
+    animation-name: antRotateRtl
+}
+
+@keyframes antRotateRtl {
+    to {
+        transform: rotate(-405deg)
+    }
+}
+
+.page-title__container {
+    width: 100%;
+    height: .54rem;
+    line-height: .54rem;
+    padding-left: .24rem;
+    border-bottom: .01rem solid rgba(0,0,0,.06)
+}
+
+.page-title__text {
+    height: 100%;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    font-size: .14rem;
+    color: #000000d9
+}
+
+.personal-certification-center-content {
+    padding: .16rem .24rem .6rem
+}
+
+.personal-certification-center-content-desc {
+    height: .68rem;
+    border-bottom: .01rem solid #0000000f
+}
+
+.personal-certification-center-content-desc span {
+    font-family: PingFang-SC-Regular;
+    font-weight: 400;
+    font-size: .14rem;
+    color: #000000a6;
+    line-height: .22rem
+}
+
+.personal-certification-center-content-form {
+    margin-top: .48rem;
+    position: relative
+}
+
+.personal-certification-center-content-form-item .ant-form-item-label {
+    width: .8rem;
+    text-align: left
+}
+
+.personal-certification-center-content-form-externals {
+    width: 6.8rem
+}
+
+.personal-certification-center-content-form-externals-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .32rem;
+    margin-right: .32rem
+}
+
+.personal-certification-center-content-form-externals-item-index {
+    width: .24rem;
+    height: .24rem;
+    background: #d9f0ff;
+    font-family: PingFang-SC-SNaNpxibold;
+    font-weight: 600;
+    font-size: .14rem;
+    color: #09f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%
+}
+
+.personal-certification-center-content-form-externals-item-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column
+}
+
+.personal-certification-center-content-form-externals-item-info-id {
+    margin-bottom: .08rem
+}
+
+.personal-certification-center-content-form-externals-item-info-id .ant-form-item-label {
+    width: .65rem;
+    text-align: left
+}
+
+.personal-certification-center-content-form-externals-item-info-plat {
+    margin-bottom: 0
+}
+
+.personal-certification-center-content-form-externals-item-info-plat .ant-form-item-label {
+    width: .65rem;
+    text-align: left
+}
+
+.personal-certification-center-content-form-title {
+    height: .22rem;
+    font-family: PingFang-SC-Medium;
+    font-weight: 500;
+    font-size: .14rem;
+    color: #000000d9;
+    line-height: .22rem;
+    display: block
+}
+
+.personal-certification-center-content-form-desc {
+    height: .2rem;
+    font-family: PingFang-SC-Regular;
+    font-weight: 400;
+    font-size: .12rem;
+    color: #00000073;
+    line-height: .2rem
+}
+
+.personal-certification-center-content-form-btn {
+    margin-top: .4rem;
+    width: 1.36rem;
+    height: .4rem;
+    background: #0099ff;
+    border-radius: .04rem
+}
+
+.personal-certification-center-content-form-license .ant-form-item-control {
+    flex: auto!important;
+    margin-top: .16rem
+}
+
+.upload-contianer {
+    width: 3.24rem;
+    border: .01rem solid #00000026
+}
+
+.upload-contianer .ant-upload.ant-upload-drag {
+    border: none
+}
+
+.upload-contianer__dragger {
+    height: 1.64rem!important
+}
+
+.upload-contianer__dragger--btn {
+    width: 1.21rem;
+    height: .37rem;
+    background: #ffffff;
+    border: .01rem solid #979797;
+    border-radius: .036rem;
+    position: relative;
+    display: inline-block;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    font-size: .16rem;
+    color: #666;
+    padding-top: .055rem
+}
+
+.upload-contianer__dragger--img {
+    position: relative;
+    display: inline-block;
+    overflow: hidden
+}
+
+.upload-contianer__dragger--img img {
+    display: block;
+    max-width: 100%;
+    max-height: 1.32rem;
+    height: auto
+}
+
+.upload-contianer__dragger--img .upload-contianer__dragger--img-uploaded-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .2s ease-in-out
+}
+
+.upload-contianer__dragger--img .upload-contianer__dragger--img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    opacity: 0;
+    transition: opacity .2s ease-in-out
+}
+
+.upload-contianer__dragger--img:hover .upload-contianer__dragger--img-overlay,.upload-contianer__dragger--img:hover .upload-contianer__dragger--img-uploaded-btn {
+    opacity: 1
+}
+
+.upload-contianer__dragger--img-change {
+    width: .74rem;
+    height: .36rem;
+    border: .01rem solid #dcdcdc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: .08rem;
+    bottom: .12rem
+}
+
+.upload-contianer__dragger--title {
+    margin-top: .12rem;
+    height: .24rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    font-size: .16rem;
+    color: #000000e0;
+    text-align: center;
+    line-height: .24rem
+}
+
+.upload-contianer__dragger--desc {
+    margin-top: .04rem;
+    height: .22rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    font-size: .14rem;
+    color: #00000073;
+    text-align: center;
+    line-height: .22rem
+}
+
+.upload-contianer__dragger--progress {
+    width: 3rem
+}
+
+.upload-contianer__dragger--progress span {
+    color: #09f;
+    margin-top: .04rem;
+    display: block;
+    text-align: center
+}
+
+.upload-contianer__dragger--spinner {
+    display: block;
+    text-align: center;
+    position: relative
+}
+
+.upload-contianer__dragger--spinner .anticon {
+    position: relative;
+    font-size: .64rem
+}
+
+.upload-contianer__dragger--spinner .anticon.upload-contianer__dragger-loading {
+    color: #09f;
+    animation: rotation 1.5s linear infinite
+}
+
+.upload-contianer__dragger--spinner .percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    font-size: .08rem;
+    color: #09f
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.mcn-rule {
+    margin-top: .64rem
+}
+
+.mcn-rule-title {
+    width: .9rem;
+    height: .22rem;
+    font-family: PingFang-SC-Medium;
+    font-weight: 500;
+    font-size: .14rem;
+    color: #000000d9;
+    line-height: .22rem
+}
+
+.mcn-rule-content {
+    margin-top: .16rem;
+    width: 4.85rem;
+    height: .88rem;
+    font-family: PingFang-SC-Regular;
+    font-weight: 400;
+    font-size: .14rem;
+    color: #000000a6;
+    line-height: .22rem
+}

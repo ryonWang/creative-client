@@ -1,0 +1,309 @@
+.el-card__body, .el-main {
+    overflow: scroll;
+}
+
+.el-aside{
+    height: 100%;
+}
+
+/* form */
+.el-form-item {
+    margin-bottom: 10px
+}
+
+/* input */
+.el-input__inner{
+    border-radius: .3rem;
+    background: var(--el-input-background);
+    color: var(--font-color-default);
+    border: 1px solid #acacac;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    height: 32px;
+    line-height: 32px;
+}
+
+.el-input input{
+    outline-style: none;
+    border: 1px #868282 solid;
+}
+.el-input input:hover{
+    opacity: 1;
+    display: inline-block;
+    border: 1px var(--item-border-active-color) solid;
+}
+.el-input input:focus{
+    opacity: 1;
+    display: inline-block;
+    border: 1px var(--item-border-active-color) solid;
+}
+
+.el-input.is-disabled .el-input__inner {
+    background-color: rgba(87, 87, 87, 0.2);
+    border-color: rgba(0, 0, 0, 0.0);
+    color: #C0C4CC;
+    cursor: not-allowed;
+}
+
+/* 单选 */
+.el-radio {
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1;
+    cursor: default;
+    white-space: nowrap;
+}
+.el-radio__input.is-checked .el-radio__inner {
+    border-color: var(--item-border-active-color);
+    background: var(--item-border-active-color);
+}
+.el-radio__input.is-checked + .el-radio__label {
+    color: var(--item-border-active-color);
+}
+
+/* 按钮 */
+.el-button:hover {
+    //background-opacity: 0.5;
+    //border-color: rgba(255, 255, 255, 0.8);
+    //background-color: rgba(255, 255, 255, 0.1);
+}
+.el-button:active {
+    box-shadow: 0px 0px 8px 3px rgba(255, 255, 255, 0.3) inset;
+}
+
+.el-button.is-disabled, .el-button.is-disabled:focus, .el-button.is-disabled:hover {
+    color: #C0C4CC;
+    cursor: not-allowed;
+    background-image: none;
+    background-color: #4e525c;
+    border-color: #6a6a6a;
+}
+
+.el-button--save {
+    color: #e7e7e7;
+    background-color: var(--item-border-active-color);
+    border-color: var(--item-border-active-color);
+}
+
+/* 滑动 */
+.el-slider__runway {
+    width: 100%;
+    height: 5px;
+    margin: 16px 0;
+    background-color: #E4E7ED;
+    border-radius: 8px;
+}
+.el-slider__bar {
+    height: 5px;
+    background-color: var(--item-border-active-color);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    position: absolute;
+}
+
+/* 冒泡下拉 */
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+    background-color: #f5ecff;
+    color: #767676;
+}
+.el-popper .popper__arrow {
+    display: none;
+}
+.el-dropdown-menu {
+    background-color: #020202;
+    border: 0px;
+}
+.el-dropdown-menu__item span{
+    color: var(--font-color-default);
+}
+.el-dropdown-menu__item .iconfont{
+    font-size: 18px;
+    padding: 0 10px 0 0;
+}
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+    background: var(--aside-hover-color);
+}
+.el-dropdown-menu__item--divided::before{
+    content: '';
+    height: 0;
+}
+
+
+.el-tabs--card > .el-tabs__header{
+    border-bottom: 0;
+}
+.el-tabs__item{
+    color: var(--font-color-default);
+}
+
+
+.el-popover{
+    background: var(--dialog-background);
+    color: var(--font-color-default);
+    border: 0px;
+}
+
+/* form */
+.el-form-item__label {
+    color: var(--font-color-default);
+    text-align: right;
+}
+
+.el-input-number__decrease:hover, .el-input-number__increase:hover {
+    color: var(--item-border-hover-color);
+}
+
+/* switch */
+.el-switch__core::after{
+    border-radius: 20%;
+}
+.el-switch__core {
+    border-radius: 3px;
+}
+.el-switch.is-checked .el-switch__core {
+    border-color: #1feebe;
+    background-color: #1feebe;
+}
+
+/* upload */
+.el-upload--picture-card{
+    background-color: var(--background-textarea);
+    border: 1px dashed #c0ccda;
+}
+.el-upload--picture-card:hover, .el-upload:focus{
+    border-color: var(--item-border-hover-color);
+    color: var(--item-border-hover-color);
+}
+
+.el-upload-list__item.is-success .el-upload-list__item-status-label {
+    display: none;
+}
+
+/* 分页 */
+.el-pagination .btn-prev{
+    color: var(--item-border-default-color);
+}
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+    background-color: var(--aside-hover-color);
+    color: var(--font-color-default);
+}
+.el-pagination.is-background .btn-next.disabled, .el-pagination.is-background .btn-next:disabled, .el-pagination.is-background .btn-prev.disabled, .el-pagination.is-background .btn-prev:disabled, .el-pagination.is-background .el-pager li.disabled {
+    color: var(--aside-background);
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: var(--item-border-active-color);
+}
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+    color: var(--item-border-hover-color);
+}
+
+/* dialog */
+.el-dialog {
+    background: var(--dialog-background);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close {
+    color: var(--item-border-hover-color);
+}
+.el-dialog__header {
+    padding: 16px 20px 10px;
+}
+
+/* tip */
+.el-tooltip__popper {
+    max-width: 15%;
+}
+.el-tooltip__popper.is-light {
+    border: 0px solid #303133;
+}
+.el-tooltip__popper.is-dark {
+    background: var(--el-tooltip-dark-background);
+    color: var(--font-color-default);
+}
+
+/* el-select */
+.el-range-editor.is-active, .el-range-editor.is-active:hover, .el-select .el-input.is-focus .el-input__inner {
+    border-color: var(--item-border-hover-color);
+}
+.el-select-dropdown {
+    border: 1px solid var(--item-border-default-color);
+    background-color: var(--aside-background);
+}
+.el-select .el-input .el-select__caret {
+    color: var(--item-border-hover-color);
+}
+.el-select-dropdown__item.selected {
+    color: var(--item-border-active-color);
+}
+.el-select .el-input__inner:focus {
+    border-color: var(--item-border-active-color);
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+    background-color: var(--aside-hover-color);
+}
+.el-select-dropdown__item {
+    color: var(--font-color-default);
+    cursor: url('/src/assets/imgs/mouse/default.cur'),default;
+}
+/* 表格 */
+.el-table{
+    border-radius: 8px;
+    .el-table__header-wrapper, .el-table__fixed-header-wrapper {
+        th {
+            background-color: var(--el-table-head-background);
+            color: var(--font-color-default);
+            height: 50px;
+            font-size: .85rem;
+        }
+    }
+    .el-table__body-wrapper {
+        .el-button [class*="el-icon-"] + span {
+            margin-left: 1px;
+        }
+    }
+}
+.el-table--border::after, .el-table--group::after, .el-table::before {
+    background-color: var(--el-table-background);
+}
+.el-table--border, .el-table--group {
+    border: 0px solid var(--col-border-color)!important;
+}
+.el-table th.el-table__cell > .cell{
+    display: inline-block!important;;
+    -webkit-box-sizing: border-box!important;;
+    box-sizing: border-box!important;;
+    position: relative!important;;
+    vertical-align: middle!important;;
+    padding-left: 10px!important;;
+    padding-right: 10px!important;;
+    width: 100%!important;;
+}
+.el-table--border .el-table__cell, .el-table__body-wrapper .el-table--border.is-scrolling-left~.el-table__fixed {
+    border-right: 1px solid var(--col-border-color);
+}
+
+.el-table th{
+    padding: 0!important;
+    height: 50px!important;;
+}
+.el-table td{
+    padding: 0!important;;
+    height: 44px!important;;
+}
+.el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
+    border-bottom: 0px solid var(--col-border-color) !important;
+}
+.el-table tr {
+    color: var(--font-color-default) !important;
+    background-color: var(--el-table-tr-background) !important;
+}
+.el-table::before {
+    border-bottom: 0px solid var(--col-border-color);
+}
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+    background-color: var(--el-table-tr-hover-background);
+}
+.el-table__empty-block {
+    background: var(--el-table-background);
+}

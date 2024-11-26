@@ -1,0 +1,46 @@
+// 仪表盘通用样式
+.dashboard {
+  &-card {
+    background: #fff;
+    border-radius: 8px;
+    transition: all 0.3s;
+    
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  }
+  
+  &-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    
+    i {
+      font-size: 24px;
+      color: #fff;
+    }
+  }
+}
+
+// 数据卡片渐变背景
+.gradient {
+  &-primary {
+    background: linear-gradient(135deg, #409EFF 0%, #3a8ee6 100%);
+  }
+  
+  &-success {
+    background: linear-gradient(135deg, #67C23A 0%, #5daf34 100%);
+  }
+  
+  &-warning {
+    background: linear-gradient(135deg, #E6A23C 0%, #cf9236 100%);
+  }
+  
+  &-danger {
+    background: linear-gradient(135deg, #F56C6C 0%, #dc6161 100%);
+  }
+} 
