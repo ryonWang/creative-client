@@ -227,7 +227,7 @@
           <el-descriptions-item label="店铺名称">{{ currentShop.name }}</el-descriptions-item>
           <el-descriptions-item label="所属平台">{{ currentShop.platform }}</el-descriptions-item>
           <el-descriptions-item label="销售额">¥{{ currentShop.salesAmount }}</el-descriptions-item>
-          <el-descriptions-item label="订单数">{{ currentShop.orderCount }}</el-descriptions-item>
+          <el-descriptions-item label="���单数">{{ currentShop.orderCount }}</el-descriptions-item>
         </el-descriptions>
 
         <el-divider>销售趋势</el-divider>
