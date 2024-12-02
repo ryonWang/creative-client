@@ -152,7 +152,7 @@
         <div class="card-header">
           <span>导入历史</span>
           <el-button @click="refreshHistory">
-            <el-icon><Refresh /></el-icon>
+            <i class="el-icon-refresh"></i>
             刷新
           </el-button>
         </div>
@@ -245,8 +245,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
-import { Refresh } from '@element-plus/icons-vue'
+import { Message } from 'element-ui'
 
 // 导入配置
 const configForm = reactive({
@@ -372,7 +371,7 @@ const handleFileChange = (file) => {
 // 下载模板
 const downloadTemplate = () => {
   // TODO: 下载导入模板
-  ElMessage.success('模板下载中...')
+  Message.success('模板下载中...')
 }
 
 // 开始导入
@@ -381,9 +380,9 @@ const startImport = async () => {
   try {
     // TODO: 调用导入接口
     await new Promise(resolve => setTimeout(resolve, 2000))
-    ElMessage.success('导入任务已提交')
+    Message.success('导入任务已提交')
   } catch (error) {
-    ElMessage.error('导入失败')
+    Message.error('导入失败')
   } finally {
     importing.value = false
   }
@@ -392,7 +391,7 @@ const startImport = async () => {
 // 刷新历史
 const refreshHistory = () => {
   // TODO: 刷新导入历史
-  ElMessage.success('刷新成功')
+  Message.success('刷新成功')
 }
 
 // 查看详情
@@ -404,7 +403,7 @@ const viewDetail = (row) => {
 // 导出结果
 const downloadResult = (row) => {
   // TODO: 导出导入结果
-  ElMessage.success('导出中...')
+  Message.success('导出中...')
 }
 </script>
 

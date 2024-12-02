@@ -403,10 +403,10 @@ const handleDelete = async (row) => {
 const handleStatusChange = async (row) => {
   try {
     // TODO: 调用状态更新接口
-    ElMessage.success('状态更新成功')
+    Message.success('状态更新成功')
   } catch (error) {
     row.status = !row.status // 恢复状态
-    ElMessage.error('状态更新失败')
+    Message.error('状态更新失败')
   }
 }
 
@@ -419,7 +419,7 @@ const handleSubmit = async () => {
     submitting.value = true
     // TODO: 调用保存接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success(dialogType.value === 'add' ? '规则添加成功' : '规则更新成功')
+    Message.success(dialogType.value === 'add' ? '规则添加成功' : '规则更新成功')
     dialogVisible.value = false
   } catch (error) {
     console.error(error)

@@ -216,7 +216,7 @@ function convert(sourceValue) {
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message, MessageBox } from 'element-ui'
 
 // 配置表单
 const configForm = reactive({
@@ -266,13 +266,13 @@ const currentFunction = ref('')
 // 处理数据源变更
 const handleSourceChange = (value) => {
   // TODO: 加载对应数据源的字段列表
-  ElMessage.success(`已切换到${value}数据源`)
+  Message.success(`已切换到${value}数据源`)
 }
 
 // 处理目标源变更
 const handleTargetChange = (value) => {
   // TODO: 加载对应目标的字段列表
-  ElMessage.success(`已切换到${value}目标源`)
+  Message.success(`已切换到${value}目标源`)
 }
 
 // 添加映射
@@ -334,7 +334,7 @@ const saveFunctionMapping = () => {
 // 加载模板
 const loadTemplate = () => {
   // TODO: 加载映射模板
-  ElMessage.success('模板加载成功')
+  Message.success('模板加载成功')
 }
 
 // 保存配置
@@ -343,9 +343,9 @@ const saveMapping = async () => {
   try {
     // TODO: 调用保存接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('配置保存成功')
+    Message.success('配置保存成功')
   } catch (error) {
-    ElMessage.error('保存失败')
+    Message.error('保存失败')
   } finally {
     saving.value = false
   }

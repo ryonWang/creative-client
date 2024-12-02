@@ -27,6 +27,18 @@ const routerList = [
         component: () => import('/src/views/pages/account/index')
       },
       {
+        path: '/home/account/permission',
+        name: 'UserPermission',
+        component: () => import('@/views/pages/account/Permission.vue'),
+        meta: { title: '权限管理' }
+      },
+      {
+        path: '/home/account/profile',
+        name: 'UserProfile',
+        component: () => import('@/views/pages/account/Profile.vue'),
+        meta: { title: '用户信息修改' }
+      },
+      {
         path: "/home/account/group",
         name: 'AccountGroup',
         meta: { title: '账号分组' },
@@ -346,234 +358,251 @@ const routerList = [
     ]
   },
   {
-    path: '/assistant',
-    name: 'Assistant',
-    component: () => import('@/views/pages/assistant/index.vue'),
-    meta: {
-      title: '商品助理',
-      keepAlive: true,
-      requireAuth: true  // 需要登录才能访问
-    },
+    path: "/",
+    name: "assistant",
+    component: Layout,
     children: [
-      // 系统管理路由
       {
-        path: 'system/user/register',
-        name: 'UserRegister',
-        component: () => import('@/views/pages/assistant/system/user/Register.vue'),
-        meta: { title: '用户注册/登录' }
-      },
-      {
-        path: 'system/user/permission',
-        name: 'UserPermission',
-        component: () => import('@/views/pages/assistant/system/user/Permission.vue'),
-        meta: { title: '权限管理' }
-      },
-      // 营销工具
-      {
-        path: 'marketing/coupon',
-        name: 'CouponManage',
-        component: () => import('@/views/pages/assistant/marketing/Coupon.vue'),
-        meta: { title: '优惠券管理' }
-      },
-      {
-        path: 'marketing/countdown',
-        name: 'ActivityCountdown',
-        component: () => import('@/views/pages/assistant/marketing/Countdown.vue'),
-        meta: { title: '活动倒计时' }
-      },
-      {
-        path: 'marketing/recommend',
-        name: 'ProductRecommend',
-        component: () => import('@/views/pages/assistant/marketing/Recommend.vue'),
-        meta: { title: '商品推荐' }
-      },
-      // 商品管理路由
-      {
-        path: 'product/edit/create',
-        name: 'ProductCreate',
-        component: () => import('@/views/pages/assistant/product/edit/Create.vue'),
-        meta: { title: '新建商品' }
-      },
-      {
-        path: 'product/edit/modify',
-        name: 'ProductModify',
-        component: () => import('@/views/pages/assistant/product/edit/Modify.vue'),
-        meta: { title: '商品信息修改' }
-      },
-      // 数据管理路由
-      {
-        path: 'data/order/receive',
-        name: 'OrderReceive',
-        component: () => import('@/views/pages/assistant/data/order/Receive.vue'),
-        meta: { title: '订单接收' }
-      },
-      // 报表路由
-      {
-        path: 'report/sales/shop',
-        name: 'ShopSalesReport',
-        component: () => import('@/views/pages/assistant/report/sales/Shop.vue'),
-        meta: { title: '店铺销售报表' }
-      },
-      // 系统配置路由
-      {
-        path: 'system/config/erp',
-        name: 'ErpConfig',
-        component: () => import('@/views/pages/assistant/system/config/Erp.vue'),
-        meta: { title: 'ERP系统对接配置' }
-      },
-      {
-        path: 'system/config/platform',
-        name: 'PlatformConfig',
-        component: () => import('@/views/pages/assistant/system/config/Platform.vue'),
-        meta: { title: '平台参数设置' }
-      },
-      {
-        path: 'system/config/logs',
-        name: 'LogManage',
-        component: () => import('@/views/pages/assistant/system/config/Logs.vue'),
-        meta: { title: '日志管理' }
-      },
-      // 铺货管理路由
-      {
-        path: 'distribution/shop/bind',
-        name: 'ShopBind',
-        component: () => import('@/views/pages/assistant/distribution/shop/Bind.vue'),
-        meta: { title: '店铺绑定' }
-      },
-      {
-        path: 'distribution/shop/template',
-        name: 'ShopTemplate',
-        component: () => import('@/views/pages/assistant/distribution/shop/Template.vue'),
-        meta: { title: '店铺模板设置' }
-      },
-      {
-        path: 'distribution/shop/monitor',
-        name: 'ShopMonitor',
-        component: () => import('@/views/pages/assistant/distribution/shop/Monitor.vue'),
-        meta: { title: '店铺状态监控' }
-      },
-      // 商品数据路由
-      {
-        path: 'product/data/import',
-        name: 'ProductImport',
-        component: () => import('@/views/pages/assistant/product/data/Import.vue'),
-        meta: { title: '商品数据导入' }
-      },
-      {
-        path: 'product/data/maintain',
-        name: 'ProductMaintain',
-        component: () => import('@/views/pages/assistant/product/data/Maintain.vue'),
-        meta: { title: '商品数据维护' }
-      },
-      {
-        path: 'product/data/mapping',
-        name: 'ProductMapping',
-        component: () => import('@/views/pages/assistant/product/data/Mapping.vue'),
-        meta: { title: '数据映射' }
-      },
-      // 数据同步路由
-      {
-        path: 'data/sync/erp',
-        name: 'ErpSync',
-        component: () => import('@/views/pages/assistant/data/sync/Erp.vue'),
-        meta: { title: '与ERP同步' }
-      },
-      {
-        path: 'data/sync/shop',
-        name: 'ShopSync',
-        component: () => import('@/views/pages/assistant/data/sync/Shop.vue'),
-        meta: { title: '与店铺同步' }
-      },
-      // 报表路由
-      {
-        path: 'report/distribution/products',
-        name: 'DistributionProductsReport',
-        component: () => import('@/views/pages/assistant/report/distribution/Products.vue'),
-        meta: { title: '铺货商品报表' }
-      },
-      {
-        path: 'report/distribution/tasks',
-        name: 'DistributionTasksReport',
-        component: () => import('@/views/pages/assistant/report/distribution/Tasks.vue'),
-        meta: { title: '铺货任务报表' }
-      },
-      {
-        path: 'report/inventory/summary',
-        name: 'InventorySummary',
-        component: () => import('@/views/pages/assistant/report/inventory/Summary.vue'),
-        meta: { title: '库存汇总报表' }
-      },
-      {
-        path: 'report/inventory/turnover',
-        name: 'InventoryTurnover',
-        component: () => import('@/views/pages/assistant/report/inventory/Turnover.vue'),
-        meta: { title: '库存周转率报表' }
-      },
-      {
-        path: 'distribution/product/single',
-        name: 'SingleDistribution',
-        component: () => import('@/views/pages/assistant/distribution/product/Single.vue'),
-        meta: { title: '单商品铺货' }
-      },
-      {
-        path: 'distribution/product/batch',
-        name: 'BatchDistribution',
-        component: () => import('@/views/pages/assistant/distribution/product/Batch.vue'),
-        meta: { title: '批量铺货' }
-      },
-      {
-        path: 'distribution/product/task',
-        name: 'DistributionTask',
-        component: () => import('@/views/pages/assistant/distribution/product/Task.vue'),
-        meta: { title: '铺货任务管理' }
-      },
-      {
-        path: 'distribution/rule/price',
-        name: 'PriceRule',
-        component: () => import('@/views/pages/assistant/distribution/rule/Price.vue'),
-        meta: { title: '价格规则' }
-      },
-      {
-        path: 'distribution/rule/stock',
-        name: 'StockRule',
-        component: () => import('@/views/pages/assistant/distribution/rule/Stock.vue'),
-        meta: { title: '库存规则' }
-      },
-      {
-        path: 'distribution/rule/product',
-        name: 'ProductRule',
-        component: () => import('@/views/pages/assistant/distribution/rule/Product.vue'),
-        meta: { title: '商品信息规则' }
-      },
-      {
-        path: 'system/user/profile',
-        name: 'UserProfile',
-        component: () => import('@/views/pages/assistant/system/user/Profile.vue'),
-        meta: { title: '用户信息修改' }
-      },
-      {
-        path: 'product/edit/audit',
-        name: 'ProductAudit',
-        component: () => import('@/views/pages/assistant/product/edit/Audit.vue'),
-        meta: { title: '商品审核' }
-      },
-      {
-        path: 'data/order/process',
-        name: 'OrderProcess',
-        component: () => import('@/views/pages/assistant/data/order/Process.vue'),
-        meta: { title: '订单处理' }
-      },
-      {
-        path: 'data/order/analysis',
-        name: 'OrderAnalysis',
-        component: () => import('@/views/pages/assistant/data/order/Analysis.vue'),
-        meta: { title: '订单查询与统计' }
-      },
-      {
-        path: 'report/sales/product',
-        name: 'ProductSalesReport',
-        component: () => import('@/views/pages/assistant/report/sales/Product.vue'),
-        meta: { title: '商品销售报表' }
+        path: "/assistant",
+        name: 'Assistant',
+        component: () => import('@/views/pages/assistant/index.vue'),
+        meta: {
+          title: '商品助理',
+          keepAlive: true,
+          requireAuth: true
+        },
+        children: [
+          // 系统管理路由
+          // {
+          //   path: 'system/user/register',
+          //   name: 'UserRegister',
+          //   component: () => import('@/views/pages/assistant/system/user/Register.vue'),
+          //   meta: { title: '用户注册/登录' }
+          // },
+          
+          // 营销工具
+          {
+            path: 'marketing/coupon',
+            name: 'CouponManage',
+            component: () => import('@/views/pages/assistant/marketing/Coupon.vue'),
+            meta: { title: '优惠券管理' }
+          },
+          {
+            path: 'marketing/countdown',
+            name: 'ActivityCountdown',
+            component: () => import('@/views/pages/assistant/marketing/Countdown.vue'),
+            meta: { title: '活动倒计时' }
+          },
+          {
+            path: 'marketing/recommend',
+            name: 'ProductRecommend',
+            component: () => import('@/views/pages/assistant/marketing/Recommend.vue'),
+            meta: { title: '商品推荐' }
+          },
+          // 商品管理路由
+          {
+            path: 'product/edit/create',
+            name: 'ProductCreate',
+            component: () => import('@/views/pages/assistant/product/edit/Create.vue'),
+            meta: { title: '新建商品' }
+          },
+          {
+            path: 'product/edit/modify',
+            name: 'ProductModify',
+            component: () => import('@/views/pages/assistant/product/edit/Modify.vue'),
+            meta: { title: '商品信息修改' }
+          },
+          // 数据管理路由
+          {
+            path: 'data/order/receive',
+            name: 'OrderReceive',
+            component: () => import('@/views/pages/assistant/data/order/Receive.vue'),
+            meta: { title: '订单接收' }
+          },
+          // 报表路由
+          {
+            path: 'report/sales/shop',
+            name: 'ShopSalesReport',
+            component: () => import('@/views/pages/assistant/report/sales/Shop.vue'),
+            meta: { title: '店铺销售报表' }
+          },
+          // 系统配置路由
+          {
+            path: 'system/config/erp',
+            name: 'ErpConfig',
+            component: () => import('@/views/pages/assistant/system/config/Erp.vue'),
+            meta: { title: 'ERP系统对接配置' }
+          },
+          {
+            path: 'system/config/platform',
+            name: 'PlatformConfig',
+            component: () => import('@/views/pages/assistant/system/config/Platform.vue'),
+            meta: { title: '平台参数设置' }
+          },
+          {
+            path: 'system/config/logs',
+            name: 'LogManage',
+            component: () => import('@/views/pages/assistant/system/config/Logs.vue'),
+            meta: { title: '日志管理' }
+          },
+          // 铺货管理路由
+          {
+            path: 'distribution/shop/bind',
+            name: 'ShopBind',
+            component: () => import('@/views/pages/assistant/distribution/shop/Bind.vue'),
+            meta: { title: '店铺绑定' }
+          },
+          {
+            path: 'distribution/shop/template',
+            name: 'ShopTemplate',
+            component: () => import('@/views/pages/assistant/distribution/shop/Template.vue'),
+            meta: { title: '店铺模板设置' }
+          },
+          {
+            path: 'distribution/shop/monitor',
+            name: 'ShopMonitor',
+            component: () => import('@/views/pages/assistant/distribution/shop/Monitor.vue'),
+            meta: { title: '店铺状态监控' }
+          },
+          // 商品数据路由
+          {
+            path: 'product/data/import',
+            name: 'ProductImport',
+            component: () => import('@/views/pages/assistant/product/data/Import.vue'),
+            meta: { title: '商品数据导入' }
+          },
+          {
+            path: 'product/data/maintain',
+            name: 'ProductMaintain',
+            component: () => import('@/views/pages/assistant/product/data/Maintain.vue'),
+            meta: { title: '商品数据维护' }
+          },
+          {
+            path: 'product/data/mapping',
+            name: 'ProductMapping',
+            component: () => import('@/views/pages/assistant/product/data/Mapping.vue'),
+            meta: { title: '数据映射' }
+          },
+          // 数据同步路由
+          {
+            path: 'data/sync/erp',
+            name: 'ErpSync',
+            component: () => import('@/views/pages/assistant/data/sync/Erp.vue'),
+            meta: { title: '与ERP同步' }
+          },
+          {
+            path: 'data/sync/shop',
+            name: 'ShopSync',
+            component: () => import('@/views/pages/assistant/data/sync/Shop.vue'),
+            meta: { title: '与店铺同步' }
+          },
+          // 报表路由
+          {
+            path: 'report/distribution/products',
+            name: 'DistributionProductsReport',
+            component: () => import('@/views/pages/assistant/report/distribution/Products.vue'),
+            meta: { title: '铺货商品报表' }
+          },
+          {
+            path: 'report/distribution/tasks',
+            name: 'DistributionTasksReport',
+            component: () => import('@/views/pages/assistant/report/distribution/Tasks.vue'),
+            meta: { title: '铺货任务报表' }
+          },
+          {
+            path: 'report/inventory/summary',
+            name: 'InventorySummary',
+            component: () => import('@/views/pages/assistant/report/inventory/Summary.vue'),
+            meta: { title: '库存汇总报表' }
+          },
+          {
+            path: 'report/inventory/turnover',
+            name: 'InventoryTurnover',
+            component: () => import('@/views/pages/assistant/report/inventory/Turnover.vue'),
+            meta: { title: '库存���转率报表' }
+          },
+          {
+            path: 'distribution/product/single',
+            name: 'SingleDistribution',
+            component: () => import('@/views/pages/assistant/distribution/product/Single.vue'),
+            meta: { title: '单商品铺货' }
+          },
+          {
+            path: 'distribution/product/batch',
+            name: 'BatchDistribution',
+            component: () => import('@/views/pages/assistant/distribution/product/Batch.vue'),
+            meta: { title: '批量铺货' }
+          },
+          {
+            path: 'distribution/product/task',
+            name: 'DistributionTask',
+            component: () => import('@/views/pages/assistant/distribution/product/Task.vue'),
+            meta: { title: '铺货任务管理' }
+          },
+          {
+            path: 'distribution/rule/price',
+            name: 'PriceRule',
+            component: () => import('@/views/pages/assistant/distribution/rule/Price.vue'),
+            meta: { title: '价格规则' }
+          },
+          {
+            path: 'distribution/rule/stock',
+            name: 'StockRule',
+            component: () => import('@/views/pages/assistant/distribution/rule/Stock.vue'),
+            meta: { title: '库存规则' }
+          },
+          {
+            path: 'distribution/rule/product',
+            name: 'ProductRule',
+            component: () => import('@/views/pages/assistant/distribution/rule/Product.vue'),
+            meta: { title: '商品信息规则' }
+          },
+          
+          {
+            path: 'product/edit/audit',
+            name: 'ProductAudit',
+            component: () => import('@/views/pages/assistant/product/edit/Audit.vue'),
+            meta: { title: '商品审核' }
+          },
+          {
+            path: 'data/order/process',
+            name: 'OrderProcess',
+            component: () => import('@/views/pages/assistant/data/order/Process.vue'),
+            meta: { title: '订单处理' }
+          },
+          {
+            path: 'data/order/analysis',
+            name: 'OrderAnalysis',
+            component: () => import('@/views/pages/assistant/data/order/Analysis.vue'),
+            meta: { title: '订单查询与统计' }
+          },
+          {
+            path: 'report/sales/product',
+            name: 'ProductSalesReport',
+            component: () => import('@/views/pages/assistant/report/sales/Product.vue'),
+            meta: { title: '商品销售报表' }
+          },
+          // 智能设计相关路由
+          {
+            path: 'smart/detail-page-editor',
+            name: 'DetailPageEditor',
+            component: () => import('@/views/pages/assistant/smart/DetailPageEditor.vue'),
+            meta: { title: '详情页编辑器' }
+          },
+          // 数据分析相关路由
+          {
+            path: 'analysis/traffic',
+            name: 'TrafficAnalysis',
+            component: () => import('@/views/pages/assistant/analysis/Traffic.vue'),
+            meta: { title: '流量分析' }
+          },
+          {
+            path: 'analysis/conversion',
+            name: 'ConversionAnalysis',
+            component: () => import('@/views/pages/assistant/analysis/Conversion.vue'),
+            meta: { title: '转化分析' }
+          }
+        ]
       }
     ]
   },

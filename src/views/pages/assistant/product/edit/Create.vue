@@ -119,7 +119,7 @@
                 :auto-upload="false"
                 :limit="5"
               >
-                <el-icon><Plus /></el-icon>
+                <i class="el-icon-plus"></i>
                 <template #tip>
                   <div class="upload-tip">建议尺寸800x800px，最多5张</div>
                 </template>
@@ -217,9 +217,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
-import { ElMessage } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
+import { ref, reactive, computed, nextTick } from 'vue'
+import { Message, MessageBox } from 'element-ui'
 
 // 当前步骤
 const currentStep = ref(0)
@@ -385,10 +384,10 @@ const handleSubmit = async () => {
     submitting.value = true
     // TODO: 调用创建商品接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('商品创建成功')
+    Message.success('商品创建成功')
   } catch (error) {
     console.error(error)
-    ElMessage.error('表单验证失败')
+    Message.error('表单验证失败')
   } finally {
     submitting.value = false
   }

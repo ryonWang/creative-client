@@ -23,7 +23,7 @@
         <h3>店铺状态监控</h3>
         <div class="header-right">
           <el-button type="primary" @click="refreshData">
-            <el-icon><Refresh /></el-icon>刷新数据
+            <i class="el-icon-refresh"></i>刷新数据
           </el-button>
           <el-radio-group v-model="autoRefresh" size="small">
             <el-radio-button :label="0">手动刷新</el-radio-button>
@@ -124,14 +124,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ElMessage } from 'element-plus'
-import {
-  Shop,
-  Connection,
-  Warning,
-  Refresh,
-  DataLine
-} from '@element-plus/icons-vue'
+import { Message } from 'element-ui'
 
 // 数据概览
 const overviewData = [
@@ -230,9 +223,9 @@ const viewErrorLog = (shop) => {
 const handleTest = async (shop) => {
   try {
     // TODO: 调用测试接口
-    ElMessage.success('连接测试成功')
+    Message.success('连接测试成功')
   } catch (error) {
-    ElMessage.error('连接测试失败')
+    Message.error('连接测试失败')
   }
 }
 
@@ -240,9 +233,9 @@ const handleTest = async (shop) => {
 const handleSync = async (shop) => {
   try {
     // TODO: 调用同步接口
-    ElMessage.success('已开始同步')
+    Message.success('已开始同步')
   } catch (error) {
-    ElMessage.error('同步失败')
+    Message.error('同步失败')
   }
 }
 
@@ -257,9 +250,9 @@ const refreshData = async () => {
   try {
     // TODO: 调用刷新接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('数据已更新')
+    Message.success('数据已更新')
   } catch (error) {
-    ElMessage.error('刷新失败')
+    Message.error('刷新失败')
   } finally {
     loading.value = false
   }

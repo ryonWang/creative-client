@@ -204,7 +204,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message, MessageBox } from 'element-ui'
 
 // 搜索表单
 const searchForm = reactive({
@@ -321,7 +321,7 @@ const fetchProductList = async () => {
     // TODO: 调用获取商品列表接口
     await new Promise(resolve => setTimeout(resolve, 1000))
   } catch (error) {
-    ElMessage.error('获取商品列表失败')
+    Message.error('获取商品列表失败')
   } finally {
     loading.value = false
   }
@@ -337,9 +337,9 @@ const handleDistribute = (row) => {
 const handleUpdate = async (row) => {
   try {
     // TODO: 调用更新接口
-    ElMessage.success('商品信息已更新')
+    Message.success('商品信息已更新')
   } catch (error) {
-    ElMessage.error('更新失败')
+    Message.error('更新失败')
   }
 }
 
@@ -352,7 +352,7 @@ const handleLog = (row) => {
 // 提交铺货
 const submitDistribute = async () => {
   if (!distributeForm.shops.length) {
-    ElMessage.warning('请选择要铺货的店铺')
+    Message.warning('请选择要铺货的店铺')
     return
   }
 
@@ -360,11 +360,11 @@ const submitDistribute = async () => {
   try {
     // TODO: 调用铺货接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('铺货任务已提交')
+    Message.success('铺货任务已提交')
     dialogVisible.value = false
     fetchProductList()
   } catch (error) {
-    ElMessage.error('铺货失败')
+    Message.error('铺货失败')
   } finally {
     submitting.value = false
   }

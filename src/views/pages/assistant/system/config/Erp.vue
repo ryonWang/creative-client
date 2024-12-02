@@ -189,98 +189,98 @@
   </div>
 </template>
 
-<script setup>
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
+<script>
+// 删除 setup 语法，改用 Vue 2 的选项式 API
+// 删除 element-plus 的导入
+import { Message } from 'element-ui'
 
-// 表单数据
-const configForm = reactive({
-  type: 'kingdee',
-  version: '1.0.0',
-  protocol: 'https',
-  serverUrl: '',
-  port: 443,
-  appId: '',
-  appSecret: '',
-  syncEnabled: false,
-  syncInterval: '30min',
-  syncItems: ['product', 'inventory'],
-  timeout: 30,
-  retryTimes: 3,
-  errorNotify: ['email']
-})
+export default {
+  data() {
+    return {
+      // 表单数据
+      configForm: {
+        type: 'kingdee',
+        version: '1.0.0',
+        protocol: 'https',
+        serverUrl: '',
+        port: 443,
+        appId: '',
+        appSecret: '',
+        syncEnabled: false,
+        syncInterval: '30min',
+        syncItems: ['product', 'inventory'],
+        timeout: 30,
+        retryTimes: 3,
+        errorNotify: ['email']
+      },
+      // 表单规则
+      formRules: {
+        type: [
+          { required: true, message: '请选择ERP类型', trigger: 'change' }
+        ],
+        version: [
+          { required: true, message: '请输入接口版本', trigger: 'blur' }
+        ],
+        serverUrl: [
+          { required: true, message: '请输入服务地址', trigger: 'blur' }
+        ],
+        port: [
+          { required: true, message: '请输入端口号', trigger: 'change' }
+        ],
+        appId: [
+          { required: true, message: '请输入应用ID', trigger: 'blur' }
+        ],
+        appSecret: [
+          { required: true, message: '请输入应用密钥', trigger: 'blur' }
+        ],
+        syncInterval: [
+          { required: true, message: '请选择同步频率', trigger: 'change' }
+        ]
+      },
+      saving: false,
+      testing: false,
+      testResultVisible: false,
+      testSuccess: false,
+      testMessage: ''
+    }
+  },
+  methods: {
+    // 测试连接
+    async testConnection() {
+      if (!this.$refs.configFormRef) return
+      
+      try {
+        await this.$refs.configFormRef.validate(['serverUrl', 'port', 'appId', 'appSecret'])
+        this.testing = true
+        // TODO: 调用测试接口
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        this.testSuccess = true
+        this.testMessage = '成功连接到ERP系统'
+      } catch (error) {
+        this.testSuccess = false
+        this.testMessage = error.message || '连接失败，请检查配置'
+      } finally {
+        this.testing = false
+        this.testResultVisible = true
+      }
+    },
 
-// 表单规则
-const formRules = {
-  type: [
-    { required: true, message: '请选择ERP类型', trigger: 'change' }
-  ],
-  version: [
-    { required: true, message: '请输入接口版本', trigger: 'blur' }
-  ],
-  serverUrl: [
-    { required: true, message: '请输入服务地址', trigger: 'blur' }
-  ],
-  port: [
-    { required: true, message: '请输入端口号', trigger: 'change' }
-  ],
-  appId: [
-    { required: true, message: '请输入应用ID', trigger: 'blur' }
-  ],
-  appSecret: [
-    { required: true, message: '请输入应用密钥', trigger: 'blur' }
-  ],
-  syncInterval: [
-    { required: true, message: '请选择同步频率', trigger: 'change' }
-  ]
-}
-
-// 表单引用
-const configFormRef = ref()
-
-// 保存状态
-const saving = ref(false)
-
-// 测试状态
-const testing = ref(false)
-const testResultVisible = ref(false)
-const testSuccess = ref(false)
-const testMessage = ref('')
-
-// 测试连接
-const testConnection = async () => {
-  if (!configFormRef.value) return
-  
-  try {
-    await configFormRef.value.validate(['serverUrl', 'port', 'appId', 'appSecret'])
-    testing.value = true
-    // TODO: 调用测试接口
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    testSuccess.value = true
-    testMessage.value = '成功连接到ERP系统'
-  } catch (error) {
-    testSuccess.value = false
-    testMessage.value = error.message || '连接失败，请检查配置'
-  } finally {
-    testing.value = false
-    testResultVisible.value = true
-  }
-}
-
-// 保存配置
-const saveConfig = async () => {
-  if (!configFormRef.value) return
-  
-  try {
-    await configFormRef.value.validate()
-    saving.value = true
-    // TODO: 调用保存接口
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('配置保存成功')
-  } catch (error) {
-    console.error(error)
-  } finally {
-    saving.value = false
+    // 保存配置
+    async saveConfig() {
+      if (!this.$refs.configFormRef) return
+      
+      try {
+        await this.$refs.configFormRef.validate()
+        this.saving = true
+        // TODO: 调用保存接口
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        this.$message.success('配置保存成功')
+      } catch (error) {
+        console.error(error)
+      } finally {
+        this.saving = false
+      }
+    }
   }
 }
 </script>

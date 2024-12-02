@@ -6,7 +6,7 @@
         <div class="card-header">
           <span>价格规则列表</span>
           <el-button type="primary" @click="handleAddRule">
-            <el-icon><Plus /></el-icon>新增规则
+            <i class="el-icon-plus"></i>新增规则
           </el-button>
         </div>
       </template>
@@ -238,7 +238,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { Message } from 'element-ui'
-import { Plus } from '@element-plus/icons-vue'
 
 // 规则列表数据
 const loading = ref(false)

@@ -282,16 +282,16 @@ const handleClearLog = async () => {
 // 导出日志
 const handleExportLog = () => {
   // TODO: 调用导出接口
-  ElMessage.success('日志导出中...')
+  Message.success('日志导出中...')
 }
 
 // 重试同步
 const handleRetry = async (row) => {
   try {
     // TODO: 调用重试接口
-    ElMessage.success('重试任务已提交')
+    Message.success('重试任务已提交')
   } catch (error) {
-    ElMessage.error('重试失败')
+    Message.error('重试失败')
   }
 }
 
@@ -302,7 +302,7 @@ const handleDeleteLog = async (row) => {
       type: 'warning'
     })
     // TODO: 调用删除接口
-    ElMessage.success('删除成功')
+    Message.success('删除成功')
   } catch {
     // 取消删除
   }

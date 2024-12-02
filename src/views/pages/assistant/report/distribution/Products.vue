@@ -119,13 +119,13 @@
               :type="viewType === 'table' ? 'primary' : ''"
               @click="viewType = 'table'"
             >
-              <el-icon><List /></el-icon>
+              <i class="el-icon-menu"></i>
             </el-button>
             <el-button
               :type="viewType === 'card' ? 'primary' : ''"
               @click="viewType = 'card'"
             >
-              <el-icon><Grid /></el-icon>
+              <i class="el-icon-grid"></i>
             </el-button>
           </el-button-group>
         </div>
@@ -313,263 +313,242 @@
   </div>
 </template>
 
-<script setup>
-import { ref, reactive } from 'vue'
-import { ElMessage } from 'element-plus'
-import {
-  List,
-  Grid,
-  Goods,
-  Shop,
-  ShoppingCart,
-  Warning
-} from '@element-plus/icons-vue'
-
-// 日期快捷选项
-const dateShortcuts = [
-  {
-    text: '最近一周',
-    value: () => {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-      return [start, end]
-    }
-  },
-  {
-    text: '最近一月',
-    value: () => {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-      return [start, end]
-    }
-  },
-  {
-    text: '最近三月',
-    value: () => {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-      return [start, end]
-    }
-  }
-]
-
-// 店铺列表
-const shopList = [
-  { id: 1, name: '店铺A' },
-  { id: 2, name: '店铺B' },
-  { id: 3, name: '店铺C' }
-]
-
-// 分类选项
-const categoryOptions = [
-  {
-    value: 1,
-    label: '服装',
-    children: [
-      { value: 11, label: '上衣' },
-      { value: 12, label: '裤装' }
-    ]
-  }
-]
-
-// 搜索表单
-const searchForm = reactive({
-  dateRange: [],
-  shop: '',
-  category: [],
-  status: ''
-})
-
-// 汇总数据
-const summaryData = [
-  {
-    title: '铺货商品总数',
-    value: '1,234',
-    trend: 'up',
-    rate: 12.3,
-    icon: 'Goods',
-    type: 'primary'
-  },
-  {
-    title: '铺货店铺总数',
-    value: '56',
-    trend: 'up',
-    rate: 8.5,
-    icon: 'Shop',
-    type: 'success'
-  },
-  {
-    title: '待铺货商品数',
-    value: '89',
-    trend: 'down',
-    rate: 3.2,
-    icon: 'ShoppingCart',
-    type: 'warning'
-  },
-  {
-    title: '铺货失败数',
-    value: '12',
-    trend: 'up',
-    rate: 6.7,
-    icon: 'Warning',
-    type: 'danger'
-  }
-]
-
-// 图表控制
-const statusChartType = ref('count')
-const shopChartType = ref('count')
-
-// 视图控制
-const viewType = ref('table')
-const loading = ref(false)
-const drawerVisible = ref(false)
-const currentProduct = ref(null)
-
-// 表格数据
-const productList = ref([
-  {
-    id: 1,
-    image: 'https://via.placeholder.com/100',
-    name: '测试商品1',
-    category: '服装/上衣',
-    status: 'completed',
-    shopCount: 3,
-    successRate: 100,
-    shops: [
-      { id: 1, name: '店铺A' },
-      { id: 2, name: '店铺B' }
-    ],
-    distributionTime: '2024-03-20 10:00:00',
-    updateTime: '2024-03-20 10:30:00',
-    priceRule: '固定加价',
-    stockRule: '同步库存',
-    productRule: '标题优化'
-  }
-])
-
-// 分页相关
-const currentPage = ref(1)
-const pageSize = ref(12)
-const total = ref(100)
-
-// 获取状态样式
-const getStatusType = (status) => {
-  const types = {
-    pending: 'info',
-    processing: 'warning',
-    completed: 'success',
-    failed: 'danger'
-  }
-  return types[status] || 'info'
-}
-
-// 获取状态文本
-const getStatusLabel = (status) => {
-  const labels = {
-    pending: '待铺货',
-    processing: '铺货中',
-    completed: '已铺货',
-    failed: '铺货失败'
-  }
-  return labels[status] || status
-}
-
-// 获取进度条状态
-const getProgressStatus = (rate) => {
-  if (rate >= 90) return 'success'
-  if (rate >= 60) return 'warning'
-  return 'exception'
-}
-
-// 搜索
-const handleSearch = () => {
-  fetchProductList()
-}
-
-// 重置搜索
-const resetSearch = () => {
-  searchForm.dateRange = []
-  searchForm.shop = ''
-  searchForm.category = []
-  searchForm.status = ''
-  handleSearch()
-}
-
-// 导出报表
-const handleExport = () => {
-  // TODO: 调���导出接口
-  ElMessage.success('报表导出中...')
-}
-
-// 获取商品列表
-const fetchProductList = async () => {
-  loading.value = true
-  try {
-    // TODO: 调用获取商品列表接口
-    await new Promise(resolve => setTimeout(resolve, 1000))
-  } catch (error) {
-    ElMessage.error('获取数据失败')
-  } finally {
-    loading.value = false
-  }
-}
-
-// 查看详情
-const handleDetail = (row) => {
-  currentProduct.value = {
-    ...row,
-    shopDetails: [
-      {
-        shopName: '店铺A',
-        status: 'completed',
-        price: 199.00,
-        stock: 100,
-        updateTime: '2024-03-20 10:30:00'
-      }
-    ],
-    logs: [
-      {
-        time: '2024-03-20 10:00:00',
-        status: 'success',
-        content: '开始铺货'
+<script>
+export default {
+  data() {
+    return {
+      // 日期快捷选项
+      dateShortcuts: [
+        {
+          text: '最近一周',
+          value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            return [start, end]
+          }
+        },
+        {
+          text: '最近一月',
+          value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            return [start, end]
+          }
+        },
+        {
+          text: '最近三月',
+          value: () => {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            return [start, end]
+          }
+        }
+      ],
+      // 店铺列表
+      shopList: [
+        { id: 1, name: '店铺A' },
+        { id: 2, name: '店铺B' },
+        { id: 3, name: '店铺C' }
+      ],
+      // 分类选项
+      categoryOptions: [
+        {
+          value: 1,
+          label: '服装',
+          children: [
+            { value: 11, label: '上衣' },
+            { value: 12, label: '裤装' }
+          ]
+        }
+      ],
+      // 搜索表单
+      searchForm: {
+        dateRange: [],
+        shop: '',
+        category: [],
+        status: ''
       },
-      {
-        time: '2024-03-20 10:30:00',
-        status: 'success',
-        content: '铺货完成'
+      // 汇总数据
+      summaryData: [
+        {
+          title: '铺货商品总数',
+          value: '1,234',
+          trend: 'up',
+          rate: 12.3,
+          icon: 'el-icon-goods',
+          type: 'primary'
+        },
+        {
+          title: '铺货店铺总数',
+          value: '56',
+          trend: 'up',
+          rate: 8.5,
+          icon: 'el-icon-shop',
+          type: 'success'
+        },
+        {
+          title: '待铺货商品数',
+          value: '89',
+          trend: 'down',
+          rate: 3.2,
+          icon: 'el-icon-shopping-cart-full',
+          type: 'warning'
+        },
+        {
+          title: '铺货失败数',
+          value: '12',
+          trend: 'up',
+          rate: 6.7,
+          icon: 'el-icon-warning',
+          type: 'danger'
+        }
+      ],
+      // 图表控制
+      statusChartType: 'count',
+      shopChartType: 'count',
+      // 视图控制
+      viewType: 'table',
+      loading: false,
+      drawerVisible: false,
+      currentProduct: null,
+      // 表格数据
+      productList: [
+        {
+          id: 1,
+          image: 'https://via.placeholder.com/100',
+          name: '测试商品1',
+          category: '服装/上衣',
+          status: 'completed',
+          shopCount: 3,
+          successRate: 100,
+          shops: [
+            { id: 1, name: '店铺A' },
+            { id: 2, name: '店铺B' }
+          ],
+          distributionTime: '2024-03-20 10:00:00',
+          updateTime: '2024-03-20 10:30:00',
+          priceRule: '固定加价',
+          stockRule: '同步库存',
+          productRule: '标题优化'
+        }
+      ],
+      // 分页相关
+      currentPage: 1,
+      pageSize: 12,
+      total: 100
+    }
+  },
+  methods: {
+    // 获取状态样式
+    getStatusType(status) {
+      const types = {
+        pending: 'info',
+        processing: 'warning',
+        completed: 'success',
+        failed: 'danger'
       }
-    ]
+      return types[status] || 'info'
+    },
+    // 获取状态文本
+    getStatusLabel(status) {
+      const labels = {
+        pending: '待铺货',
+        processing: '铺货中',
+        completed: '已铺货',
+        failed: '铺货失败'
+      }
+      return labels[status] || status
+    },
+    // 获取进度条状态
+    getProgressStatus(rate) {
+      if (rate >= 90) return 'success'
+      if (rate >= 60) return 'warning'
+      return 'exception'
+    },
+    // 搜索
+    handleSearch() {
+      this.fetchProductList()
+    },
+    // 重置搜索
+    resetSearch() {
+      this.searchForm.dateRange = []
+      this.searchForm.shop = ''
+      this.searchForm.category = []
+      this.searchForm.status = ''
+      this.handleSearch()
+    },
+    // 导出报表
+    handleExport() {
+      // TODO: 调用导出接口
+      this.$message.success('报表导出中...')
+    },
+    // 获取商品列表
+    async fetchProductList() {
+      this.loading = true
+      try {
+        // TODO: 调用获取商品列表接口
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      } catch (error) {
+        this.$message.error('获取数据失败')
+      } finally {
+        this.loading = false
+      }
+    },
+    // 查看详情
+    handleDetail(row) {
+      this.currentProduct = {
+        ...row,
+        shopDetails: [
+          {
+            shopName: '店铺A',
+            status: 'completed',
+            price: 199.00,
+            stock: 100,
+            updateTime: '2024-03-20 10:30:00'
+          }
+        ],
+        logs: [
+          {
+            time: '2024-03-20 10:00:00',
+            status: 'success',
+            content: '开始铺货'
+          },
+          {
+            time: '2024-03-20 10:30:00',
+            status: 'success',
+            content: '铺货完成'
+          }
+        ]
+      }
+      this.drawerVisible = true
+    },
+    // 重试铺货
+    async handleRetry(row) {
+      try {
+        // TODO: 调用重试接口
+        this.$message.success('重试任务已提交')
+      } catch (error) {
+        this.$message.error('重试失败')
+      }
+    },
+    // 分页相关
+    handleSizeChange(val) {
+      this.pageSize = val
+      this.fetchProductList()
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val
+      this.fetchProductList()
+    }
+  },
+  created() {
+    // 初始化
+    this.fetchProductList()
   }
-  drawerVisible.value = true
 }
-
-// 重试铺货
-const handleRetry = async (row) => {
-  try {
-    // TODO: 调用重试接口
-    ElMessage.success('重试任务已提交')
-  } catch (error) {
-    ElMessage.error('重试失败')
-  }
-}
-
-// 分页相关
-const handleSizeChange = (val) => {
-  pageSize.value = val
-  fetchProductList()
-}
-
-const handleCurrentChange = (val) => {
-  currentPage.value = val
-  fetchProductList()
-}
-
-// 初始化
-fetchProductList()
 </script>
 
 <style scoped>

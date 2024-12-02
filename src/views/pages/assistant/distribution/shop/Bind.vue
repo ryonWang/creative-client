@@ -3,7 +3,7 @@
     <!-- 顶部操作栏 -->
     <div class="operation-bar">
       <el-button type="primary" @click="handleAddShop">
-        <el-icon><Plus /></el-icon>绑定新店铺
+        <i class="el-icon-plus"></i>绑定新店铺
       </el-button>
     </div>
 
@@ -95,8 +95,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Plus } from '@element-plus/icons-vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { Message, MessageBox } from 'element-ui'
 
 // 店铺列表数据
 const shopList = ref([
@@ -172,22 +171,22 @@ const handleEdit = (shop) => {
 const handleTest = async (shop) => {
   try {
     // TODO: 调用测试连接接口
-    ElMessage.success('连接测试成功')
+    Message.success('连接测试成功')
   } catch (error) {
-    ElMessage.error('连接测试失败')
+    Message.error('连接测试失败')
   }
 }
 
 // 解绑店铺
 const handleUnbind = async (shop) => {
   try {
-    await ElMessageBox.confirm(
+    await MessageBox.confirm(
       `确认解绑店铺"${shop.shopName}"吗？解绑后需要重新授权。`,
       '提示',
       { type: 'warning' }
     )
     // TODO: 调用解绑接口
-    ElMessage.success('店铺解绑成功')
+    Message.success('店铺解绑成功')
   } catch {
     // 取消解绑
   }
@@ -201,12 +200,12 @@ const handleSubmit = async () => {
       submitting.value = true
       try {
         // TODO: 调用绑定/更新接口
-        ElMessage.success(
+        Message.success(
           dialogType.value === 'add' ? '店铺绑定成功' : '店铺信息更新成功'
         )
         dialogVisible.value = false
       } catch (error) {
-        ElMessage.error('操作失败')
+        Message.error('操作失败')
       } finally {
         submitting.value = false
       }

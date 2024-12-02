@@ -19,6 +19,14 @@
         <i class="el-icon-key"></i>
         账号授权
       </el-menu-item>
+      <el-menu-item index="/home/account/permission">
+        <i class="el-icon-connection"></i>
+        权限管理
+      </el-menu-item>
+      <el-menu-item index="/home/account/profile">
+        <i class="el-icon-user"></i>
+        用户信息修改
+      </el-menu-item>
       <el-menu-item index="/home/account/group">
         <i class="el-icon-user-solid"></i>
         账号分组

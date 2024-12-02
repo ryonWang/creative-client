@@ -142,8 +142,8 @@
           </el-table>
           <div class="pagination">
             <el-pagination
-              v-model:current-page="currentPage"
-              v-model:page-size="pageSize"
+              :current-page.sync="currentPage"
+              :page-size.sync="pageSize"
               :total="total"
               :page-sizes="[10, 20, 50, 100]"
               layout="total, sizes, prev, pager, next"
@@ -157,7 +157,7 @@
 
     <!-- 预览对话框 -->
     <el-dialog
-      v-model="previewVisible"
+      :visible.sync="previewVisible"
       title="铺货预览"
       width="60%"
     >
@@ -212,7 +212,7 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message } from 'element-ui'
 
 // 配置表单
 const configForm = reactive({
@@ -305,9 +305,9 @@ const handleSelectionChange = (selection) => {
 }
 
 // 开始铺货
-const startDistribute = () => {
+const startDistribute = async () => {
   if (!configForm.targetShops.length) {
-    ElMessage.warning('请选择目标店铺')
+    Message.warning('请选择目标店铺')
     return
   }
   previewVisible.value = true
@@ -319,10 +319,10 @@ const confirmDistribute = async () => {
   try {
     // TODO: 调用批量铺货接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('铺货任务已提交')
+    Message.success('铺货任务已提交')
     previewVisible.value = false
   } catch (error) {
-    ElMessage.error('铺货失败')
+    Message.error('铺货失败')
   } finally {
     distributing.value = false
   }

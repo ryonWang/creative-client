@@ -97,7 +97,7 @@
           <el-input v-model="ruleForm.name" placeholder="请输入规则名称" />
         </el-form-item>
         <el-form-item label="规则类型" prop="type">
-          <el-select v-model="ruleForm.type" placeholder="请选择规则类型">
+          <el-select v-model="ruleForm.type" placeholder="请选择规则���型">
             <el-option label="标题优化" value="title" />
             <el-option label="描述生成" value="description" />
             <el-option label="关键词提取" value="keywords" />
@@ -292,8 +292,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
+import { Message, MessageBox } from 'element-ui'
 
 // 规则列表数据
 const loading = ref(false)
@@ -380,7 +379,7 @@ const dialogType = ref('add')
 const submitting = ref(false)
 const ruleFormRef = ref()
 
-// 表单数��
+// 表单数
 const ruleForm = reactive({
   name: '',
   type: '',
@@ -511,11 +510,11 @@ const handleCopy = (row) => {
 // 删除规则
 const handleDelete = async (row) => {
   try {
-    await ElMessageBox.confirm('确认删除该规则吗？此操作不可恢复！', '警告', {
+    await MessageBox.confirm('确认删除该规则吗？此操作不可恢复！', '警告', {
       type: 'warning'
     })
     // TODO: 调用删除接口
-    ElMessage.success('删除成功')
+    Message.success('删除成功')
   } catch {
     // 取消删除
   }
@@ -525,10 +524,10 @@ const handleDelete = async (row) => {
 const handleStatusChange = async (row) => {
   try {
     // TODO: 调用状态更新接口
-    ElMessage.success('状态更新成功')
+    Message.success('状态更新成功')
   } catch (error) {
     row.status = !row.status // 恢复状态
-    ElMessage.error('状态更新失败')
+    Message.error('状态更新失败')
   }
 }
 
@@ -541,7 +540,7 @@ const handleSubmit = async () => {
     submitting.value = true
     // TODO: 调用保存接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success(dialogType.value === 'add' ? '规则添加成功' : '规则更新成功')
+    Message.success(dialogType.value === 'add' ? '规则添加成功' : '规则更新成功')
     dialogVisible.value = false
   } catch (error) {
     console.error(error)

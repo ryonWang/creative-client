@@ -121,7 +121,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { Message } from 'element-ui'
 import ProductForm from './components/ProductForm.vue'
 
 // 搜索表单
@@ -223,7 +223,7 @@ const fetchProductList = async () => {
     // TODO: 调用获取商品列表接口
     await new Promise(resolve => setTimeout(resolve, 1000))
   } catch (error) {
-    ElMessage.error('获取商品列表失败')
+    Message.error('获取商品列表失败')
   } finally {
     loading.value = false
   }
@@ -240,7 +240,7 @@ const handleOnline = async (row) => {
   try {
     await ElMessageBox.confirm('确认上架该商品吗？')
     // TODO: 调用上架接口
-    ElMessage.success('商品已上架')
+    Message.success('商品已上架')
     fetchProductList()
   } catch {
     // 取消操作
@@ -252,7 +252,7 @@ const handleOffline = async (row) => {
   try {
     await ElMessageBox.confirm('确认下架该商品吗？')
     // TODO: 调用下架接口
-    ElMessage.success('商品已下架')
+    Message.success('商品已下架')
     fetchProductList()
   } catch {
     // 取消操作
@@ -266,7 +266,7 @@ const handleDelete = async (row) => {
       type: 'warning'
     })
     // TODO: 调用删除接口
-    ElMessage.success('商品已删除')
+    Message.success('商品已删除')
     fetchProductList()
   } catch {
     // 取消操作
@@ -277,11 +277,11 @@ const handleDelete = async (row) => {
 const handleSubmit = async (formData) => {
   try {
     // TODO: 调用更新接口
-    ElMessage.success('商品信息已更新')
+    Message.success('商品信息已更新')
     dialogVisible.value = false
     fetchProductList()
   } catch (error) {
-    ElMessage.error('更新失败')
+    Message.error('更新失败')
   }
 }
 

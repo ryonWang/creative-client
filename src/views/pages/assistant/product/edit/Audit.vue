@@ -196,7 +196,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { Message, MessageBox } from 'element-ui'
 
 // 搜索表单
 const searchForm = reactive({
@@ -306,7 +306,7 @@ const fetchAuditList = async () => {
     // TODO: 调用获取审核列表接口
     await new Promise(resolve => setTimeout(resolve, 1000))
   } catch (error) {
-    ElMessage.error('获取审核列表失败')
+    Message.error('获取审核列表失败')
   } finally {
     loading.value = false
   }
@@ -341,7 +341,7 @@ const submitAudit = async () => {
     submitting.value = true
     // TODO: 调用审核接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success(
+    Message.success(
       dialogType.value === 'approve' ? '审核已通过' : '审核已拒绝'
     )
     dialogVisible.value = false

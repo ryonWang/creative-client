@@ -15,11 +15,9 @@
     <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 3%;" v-else-if="this.$route.path.includes('workbench')">
       <workbenchMenu></workbenchMenu>
     </aside>
-
     <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 13%;" v-else-if="this.$route.path.includes('assistant')">
       <AssMenu></AssMenu>
     </aside>
-
     <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 13%;" v-else>
       <LeftMenu></LeftMenu>
     </aside>

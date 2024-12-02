@@ -5,139 +5,203 @@
       class="ass-menu-list"
       @select="handleSelect"
     >
-      <!-- 智能生成 -->
+      <!-- 系统管理 -->
       <el-submenu index="1">
         <template slot="title">
-          <i class="el-icon-magic-stick"></i>
-          <span>智能生成</span>
+          <i class="el-icon-setting"></i>
+          <span>系统管理</span>
         </template>
-        <el-menu-item index="/assistant/smart/shangpintu">
-          <i class="el-icon-picture-outline"></i>
-          商品图生成
+        <el-menu-item index="/assistant/system/config/erp">
+          <i class="el-icon-connection"></i>
+          ERP系统对接
         </el-menu-item>
-        <el-menu-item index="/assistant/smart/huanbeijing">
-          <i class="el-icon-refresh"></i>
-          模特换背景
+        <el-menu-item index="/assistant/system/config/platform">
+          <i class="el-icon-set-up"></i>
+          平台参数
         </el-menu-item>
-        <el-menu-item index="/assistant/smart/huanfu">
-          <i class="el-icon-scissors"></i>
-          模特换装
-        </el-menu-item>
-        <el-menu-item index="/assistant/smart/rentai">
-          <i class="el-icon-user"></i>
-          人台图生成
-        </el-menu-item>
-        <el-menu-item index="/assistant/smart/shiyi">
-          <i class="el-icon-s-custom"></i>
-          模特试衣
-        </el-menu-item>
-        <el-menu-item index="/assistant/smart/sjpb">
-          <i class="el-icon-s-grid"></i>
-          设计排版
-        </el-menu-item>
-        <el-menu-item index="/assistant/smart/tpbj">
-          <i class="el-icon-picture"></i>
-          图片编辑
-        </el-menu-item>
-      </el-submenu>
-
-      <!-- 多平台管理 -->
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-share"></i>
-          <span>多平台管理</span>
-        </template>
-        <el-menu-item index="2-1">
-          <i class="el-icon-key"></i>
-          平台授权
-        </el-menu-item>
-        <el-menu-item index="2-2">
-          <i class="el-icon-goods"></i>
-          商品管理
-        </el-menu-item>
-        <el-menu-item index="2-3">
-          <i class="el-icon-refresh"></i>
-          数据同步
-        </el-menu-item>
-      </el-submenu>
-
-      <!-- 保持其他菜单不变 -->
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-brush"></i>
-          <span>智能设计</span>
-        </template>
-        <el-menu-item index="3-1">
-          <i class="el-icon-picture"></i>
-          图片编辑
-        </el-menu-item>
-        <el-menu-item index="3-2">
-          <i class="el-icon-s-grid"></i>
-          布局设计
-        </el-menu-item>
-        <el-menu-item index="3-3">
-          <i class="el-icon-edit-outline"></i>
-          文案优化
-        </el-menu-item>
-      </el-submenu>
-
-      <!-- 内容发布 -->
-      <el-submenu index="4">
-        <template slot="title">
-          <i class="el-icon-upload2"></i>
-          <span>内容发布</span>
-        </template>
-        <el-menu-item index="4-1">
-          <i class="el-icon-s-promotion"></i>
-          发布管理
-        </el-menu-item>
-        <el-menu-item index="4-2">
-          <i class="el-icon-timer"></i>
-          定时任务
-        </el-menu-item>
-        <el-menu-item index="4-3">
-          <i class="el-icon-notebook-2"></i>
-          发布日志
-        </el-menu-item>
-      </el-submenu>
-
-      <!-- 数据分析 -->
-      <el-submenu index="5">
-        <template slot="title">
-          <i class="el-icon-data-line"></i>
-          <span>数据分析</span>
-        </template>
-        <el-menu-item index="5-1">
-          <i class="el-icon-data-analysis"></i>
-          效果分析
-        </el-menu-item>
-        <el-menu-item index="5-2">
-          <i class="el-icon-discover"></i>
-          竞品分析
-        </el-menu-item>
-        <el-menu-item index="5-3">
-          <i class="el-icon-warning-outline"></i>
-          优化建议
+        <el-menu-item index="/assistant/system/config/logs">
+          <i class="el-icon-document"></i>
+          日志管理
         </el-menu-item>
       </el-submenu>
 
       <!-- 营销工具 -->
-      <el-submenu index="6">
+      <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-shopping-cart-full"></i>
           <span>营销工具</span>
         </template>
-        <el-menu-item index="6-1">
-          <i class="el-icon-ticket"></i>
+        <el-menu-item index="/assistant/marketing/coupon">
+          <i class="el-icon-discount"></i>
           优惠券管理
         </el-menu-item>
-        <el-menu-item index="6-2">
+        <el-menu-item index="/assistant/marketing/countdown">
           <i class="el-icon-timer"></i>
           活动倒计时
         </el-menu-item>
-        <el-menu-item index="6-3">
+        <el-menu-item index="/assistant/marketing/recommend">
           <i class="el-icon-shopping-cart-2"></i>
           商品推荐
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 商品管理 -->
+      <el-submenu index="3">
+        <template slot="title">
+          <i class="el-icon-goods"></i>
+          <span>商品管理</span>
+        </template>
+        <el-menu-item index="/assistant/product/edit/create">
+          <i class="el-icon-plus"></i>
+          新建商品
+        </el-menu-item>
+        <el-menu-item index="/assistant/product/edit/modify">
+          <i class="el-icon-edit"></i>
+          商品信息修改
+        </el-menu-item>
+        <el-menu-item index="/assistant/product/edit/audit">
+          <i class="el-icon-view"></i>
+          商品审核
+        </el-menu-item>
+        <el-menu-item index="/assistant/product/data/import">
+          <i class="el-icon-upload2"></i>
+          商品数据导入
+        </el-menu-item>
+        <el-menu-item index="/assistant/product/data/maintain">
+          <i class="el-icon-edit-outline"></i>
+          商品数据维护
+        </el-menu-item>
+        <el-menu-item index="/assistant/product/data/mapping">
+          <i class="el-icon-connection"></i>
+          数据映射
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 数据管理 -->
+      <el-submenu index="4">
+        <template slot="title">
+          <i class="el-icon-data-line"></i>
+          <span>数据管理</span>
+        </template>
+        <el-menu-item index="/assistant/data/order/receive">
+          <i class="el-icon-receiving"></i>
+          订单接收
+        </el-menu-item>
+        <el-menu-item index="/assistant/data/order/process">
+          <i class="el-icon-set-up"></i>
+          订单处理
+        </el-menu-item>
+        <el-menu-item index="/assistant/data/order/analysis">
+          <i class="el-icon-data-analysis"></i>
+          订单查询与统计
+        </el-menu-item>
+        <el-menu-item index="/assistant/data/sync/erp">
+          <i class="el-icon-refresh"></i>
+          与ERP同步
+        </el-menu-item>
+        <el-menu-item index="/assistant/data/sync/shop">
+          <i class="el-icon-refresh-right"></i>
+          与店铺同步
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 铺货管理 -->
+      <el-submenu index="5">
+        <template slot="title">
+          <i class="el-icon-sell"></i>
+          <span>铺货管理</span>
+        </template>
+        <el-menu-item index="/assistant/distribution/shop/bind">
+          <i class="el-icon-link"></i>
+          店铺绑定
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/shop/template">
+          <i class="el-icon-files"></i>
+          店铺模板设置
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/shop/monitor">
+          <i class="el-icon-monitor"></i>
+          店铺状态监控
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/product/single">
+          <i class="el-icon-goods"></i>
+          单商品铺货
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/product/batch">
+          <i class="el-icon-s-grid"></i>
+          批量铺货
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/product/task">
+          <i class="el-icon-s-order"></i>
+          铺货任务管理
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 规则管理 -->
+      <el-submenu index="6">
+        <template slot="title">
+          <i class="el-icon-set-up"></i>
+          <span>规则管理</span>
+        </template>
+        <el-menu-item index="/assistant/distribution/rule/price">
+          <i class="el-icon-price-tag"></i>
+          价格规则
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/rule/stock">
+          <i class="el-icon-box"></i>
+          库存规则
+        </el-menu-item>
+        <el-menu-item index="/assistant/distribution/rule/product">
+          <i class="el-icon-goods"></i>
+          商品信息规则
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 报表管理 -->
+      <el-submenu index="7">
+        <template slot="title">
+          <i class="el-icon-document"></i>
+          <span>报表管理</span>
+        </template>
+        <el-menu-item index="/assistant/report/sales/shop">
+          <i class="el-icon-shopping-bag-1"></i>
+          店铺销售报表
+        </el-menu-item>
+        <el-menu-item index="/assistant/report/sales/product">
+          <i class="el-icon-goods"></i>
+          商品销售报表
+        </el-menu-item>
+        <el-menu-item index="/assistant/report/distribution/products">
+          <i class="el-icon-s-data"></i>
+          铺货商品报表
+        </el-menu-item>
+        <el-menu-item index="/assistant/report/distribution/tasks">
+          <i class="el-icon-s-order"></i>
+          铺货任务报表
+        </el-menu-item>
+        <el-menu-item index="/assistant/report/inventory/summary">
+          <i class="el-icon-box"></i>
+          库存汇总报表
+        </el-menu-item>
+        <el-menu-item index="/assistant/report/inventory/turnover">
+          <i class="el-icon-refresh"></i>
+          库存周转率报表
+        </el-menu-item>
+      </el-submenu>
+
+      <!-- 数据分析 -->
+      <el-submenu index="8">
+        <template slot="title">
+          <i class="el-icon-data-analysis"></i>
+          <span>数据分析</span>
+        </template>
+        <el-menu-item index="/assistant/analysis/traffic">
+          <i class="el-icon-data-line"></i>
+          流量分析
+        </el-menu-item>
+        <el-menu-item index="/assistant/analysis/conversion">
+          <i class="el-icon-data-board"></i>
+          转化分析
         </el-menu-item>
       </el-submenu>
     </el-menu>
@@ -154,32 +218,7 @@ export default {
   },
   methods: {
     handleSelect(index) {
-      // 如果是智能生成的子菜单，直接使用路由路径
-      if (index.startsWith('/assistant/smart/')) {
-        this.$router.push(index)
-      } else {
-        // 其他菜单保持原有的路由映射逻辑
-        const routeMap = {
-          '2-1': '/assistant/platform/auth',
-          '2-2': '/assistant/platform/goods',
-          '2-3': '/assistant/platform/sync',
-          '3-1': '/assistant/design/image',
-          '3-2': '/assistant/design/layout',
-          '3-3': '/assistant/design/copywriting',
-          '4-1': '/assistant/publish/manage',
-          '4-2': '/assistant/publish/schedule',
-          '4-3': '/assistant/publish/log',
-          '5-1': '/assistant/analysis/effect',
-          '5-2': '/assistant/analysis/competitor',
-          '5-3': '/assistant/analysis/suggestion',
-          '6-1': '/assistant/marketing/coupon',
-          '6-2': '/assistant/marketing/countdown',
-          '6-3': '/assistant/marketing/recommend'
-        }
-        if (routeMap[index]) {
-          this.$router.push(routeMap[index])
-        }
-      }
+      this.$router.push(index)
     }
   },
   created() {

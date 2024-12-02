@@ -221,7 +221,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { Message } from 'element-ui'  // 替换 element-plus
+import { Message } from 'element-ui'
 
 // 搜索表单
 const searchForm = reactive({
@@ -328,7 +328,7 @@ const handleSearch = async () => {
   try {
     await new Promise(resolve => setTimeout(resolve, 1000))
   } catch (error) {
-    $message.error('获取任务列表失败')
+    Message.error('获取任务列表失败')
   } finally {
     loading.value = false
   }
@@ -349,7 +349,7 @@ const fetchTaskList = async () => {
     // TODO: 调用获取任务列表接口
     await new Promise(resolve => setTimeout(resolve, 1000))
   } catch (error) {
-    $message.error('获取任务列表失败')
+    Message.error('获取任务列表失败')
   } finally {
     loading.value = false
   }
@@ -364,9 +364,9 @@ const handleDetail = (row) => {
 // 暂停任务
 const handlePause = async (row) => {
   try {
-    await $confirm('确认暂停该任务吗？')
+    await Message.confirm('确认暂停该任务吗？')
     // TODO: 调用暂停接口
-    $message.success('任务已暂停')
+    Message.success('任务已暂停')
   } catch {
     // 取消操作
   }
@@ -375,9 +375,9 @@ const handlePause = async (row) => {
 // 继续任务
 const handleResume = async (row) => {
   try {
-    await $confirm('确认继续执行该任务？')
+    await Message.confirm('确认继续执行该任务？')
     // TODO: 调用继续接口
-    $message.success('任务已继续执行')
+    Message.success('任务已继续执行')
   } catch {
     // 取消操作
   }
@@ -386,11 +386,11 @@ const handleResume = async (row) => {
 // 取消任务
 const handleCancel = async (row) => {
   try {
-    await $confirm('确认取消该任务吗？此操作不可恢复！', '警告', {
+    await Message.confirm('确认取消该任务吗？此操作不可恢复！', '警告', {
       type: 'warning'
     })
     // TODO: 调用取消接口
-    $message.success('任务已取消')
+    Message.success('任务已取消')
   } catch {
     // 取消操作
   }

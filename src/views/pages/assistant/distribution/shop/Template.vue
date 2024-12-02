@@ -145,7 +145,7 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message, MessageBox } from 'element-ui'
 
 // 当前选中的平台
 const currentPlatform = ref('douyin')
@@ -193,7 +193,7 @@ const saving = ref(false)
 // 处理平台切换
 const handlePlatformChange = (platform) => {
   // TODO: 加载对应平台的模板配置
-  ElMessage.success(`已切换到${platform}平台配置`)
+  Message.success(`已切换到${platform}平台配置`)
 }
 
 // 生成预览标题
@@ -211,9 +211,9 @@ const handleSave = async () => {
   try {
     // TODO: 调用保存接口
     await new Promise(resolve => setTimeout(resolve, 1000))
-    ElMessage.success('配置保存成功')
+    Message.success('配置保存成功')
   } catch (error) {
-    ElMessage.error('保存失败')
+    Message.error('保存失败')
   } finally {
     saving.value = false
   }
@@ -222,7 +222,7 @@ const handleSave = async () => {
 // 重置配置
 const handleReset = () => {
   // TODO: 重置为默认配置
-  ElMessage.success('已重置为默认配置')
+  Message.success('已重置为默认配置')
 }
 </script>
 
