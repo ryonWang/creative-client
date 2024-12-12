@@ -18,6 +18,9 @@
     <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 13%;" v-else-if="this.$route.path.includes('assistant')">
       <AssMenu></AssMenu>
     </aside>
+    <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 13%;" v-else-if="this.$route.path.includes('digitalHuman')">
+      <DigitalHumanMenu></DigitalHumanMenu>
+    </aside>
     <aside class="ant-layout-sider ant-layout-sider-light conainer_asider conainer_left_asider ease-in-out" style="width: 13%;" v-else>
       <LeftMenu></LeftMenu>
     </aside>
@@ -33,10 +36,11 @@ import Bottom from "@/components/layout/nav/Bottom";
 import LeftMenu from "./LeftMenu.vue";
 import HomeMenu from "./homeMenu.vue";
 import AssMenu from "./assMenu.vue";
+import DigitalHumanMenu from "./digitalHumanMenu.vue";
 
 export default {
   name: "navIndex",
-  components: { Bottom, Menu, Logo, UserMenu, DrawMenu ,workbenchMenu,LeftMenu,HomeMenu,AssMenu},
+  components: { Bottom, Menu, Logo, UserMenu, DrawMenu ,workbenchMenu,LeftMenu,HomeMenu,AssMenu,DigitalHumanMenu},
   data() {
     return {};
   },

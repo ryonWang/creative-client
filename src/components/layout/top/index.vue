@@ -34,7 +34,14 @@
         <div class="nav-item hover-effect" :class="{ active: currentPath === '/aiDraw' }" @click="aiDrawClick">
           <i class="nav-icon icon-ai"></i>
           <span class="nav-text gradient-text-green">
-            货不错
+            图不错
+          </span>
+        </div>
+        <div class="nav-item hover-effect" :class="{ active: currentPath === '/digitalHuman' }" @click="goDigitalHuman">
+          <i class="nav-icon icon-digital"></i>
+          <span class="nav-text gradient-text-purple">
+            数字人
+            <el-tag size="mini" type="success" effect="dark" class="hot-tag">NEW</el-tag>
           </span>
         </div>
         <div class="nav-item">
@@ -216,6 +223,9 @@ export default {
     },
     goIndex() {
       this.$router.push("/home");
+    },
+    goDigitalHuman() {
+      this.$router.push("/digitalHuman");
     }
   }
 };
@@ -684,6 +694,7 @@ export default {
 .icon-user { background: url('@/assets/imgs/icons/user.png') no-repeat center/contain; }
 .icon-logout { background: url('@/assets/imgs/icons/logout.png') no-repeat center/contain; }
 .icon-vip { background: url('@/assets/imgs/icons/vip.png') no-repeat center/contain; }
+.icon-digital { background: url('@/assets/imgs/icons/digital.png') no-repeat center/contain; }
 
 /* 添加默认头像样式 */
 .default-avatar {

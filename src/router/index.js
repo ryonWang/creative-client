@@ -519,7 +519,7 @@ const routerList = [
             path: 'report/inventory/turnover',
             name: 'InventoryTurnover',
             component: () => import('@/views/pages/assistant/report/inventory/Turnover.vue'),
-            meta: { title: '库存���转率报表' }
+            meta: { title: '库存转率报表' }
           },
           {
             path: 'distribution/product/single',
@@ -555,7 +555,7 @@ const routerList = [
             path: 'distribution/rule/product',
             name: 'ProductRule',
             component: () => import('@/views/pages/assistant/distribution/rule/Product.vue'),
-            meta: { title: '商品信息规则' }
+            meta: { title: '���品信息规则' }
           },
           
           {
@@ -606,13 +606,104 @@ const routerList = [
       }
     ]
   },
+  {
+    path: "/",
+    name: "digitalHuman",
+    component: Layout,
+    children: [
+      {
+        path: '/digitalHuman',
+        name: 'DigitalHumanIndex',
+        component: () => import('@/views/pages/digital-human/index.vue'),
+        meta: { keepAlive: true }
+      },
+      {
+        path: '/digitalHuman/digital-avatar',
+        name: 'DigitalAvatar',
+        component: () => import('@/views/pages/digital-human/digital-avatar/index.vue'),
+        meta: { 
+          title: '数字人',
+          keepAlive: true
+        }
+      },
+      {
+        path: '/digitalHuman/voice',
+        name: 'Voice',
+        component: () => import('@/views/pages/digital-human/voice/index.vue'),
+        meta: { 
+          title: '声音',
+          keepAlive: true
+        }
+      },
+      {
+        path: '/digitalHuman/live-workspace',
+        name: 'LiveWorkspace',
+        component: () => import('@/views/pages/digital-human/live-workspace/index.vue'),
+        meta: { title: '直播工作台' }
+      },
+      {
+        path: '/digitalHuman/video-workspace',
+        name: 'VideoWorkspace',
+        component: () => import('@/views/pages/digital-human/video-workspace/index.vue'),
+        meta: { title: '视频工作台' }
+      },
+      {
+        path: '/digitalHuman/my-works',
+        name: 'MyWorks',
+        component: () => import('@/views/pages/digital-human/my-works/index.vue'),
+        meta: { title: '我的作品' }
+      },
+      {
+        path: '/digitalHuman/drafts',
+        name: 'Drafts',
+        component: () => import('@/views/pages/digital-human/drafts/index.vue'),
+        meta: { title: '草稿箱' }
+      },
+      {
+        path: '/digitalHuman/chat-workspace',
+        name: 'ChatWorkspace',
+        component: () => import('@/views/pages/digital-human/chat-workspace/index.vue'),
+        meta: { title: '对话工作台' }
+      },
+      {
+        path: '/digitalHuman/knowledge-base',
+        name: 'KnowledgeBase',
+        component: () => import('@/views/pages/digital-human/knowledge-base/index.vue'),
+        meta: { title: '知识库' }
+      }
+    ]
+  },
+  {
+    path: '/digitalHuman/voice/create',
+    name: 'VoiceCreate',
+    component: () => import('@/views/pages/digital-human/voice/create.vue'),
+    meta: { 
+      title: '添加声音',
+      keepAlive: true
+    }
+  },
+  {
+    path: '/digitalHuman/voice/edit',
+    name: 'VoiceEdit',
+    component: () => import('@/views/pages/digital-human/voice/edit.vue'),
+    meta: { 
+      title: '编辑声音',
+      keepAlive: true
+    }
+  }
 ];
 
-// 防止连续点击多次路由报错
-let routerPush = VueRouter.prototype.push;
+// 修改路由跳转处理
+const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
-  return routerPush.call(this, location).catch(err => err)
-}
+  return originalPush.call(this, location).catch(err => {
+    if (err.name !== 'NavigationDuplicated') {
+      throw err;
+    }
+    // 返回 Promise.resolve 以避免报错
+    return Promise.resolve(err);
+  });
+};
 
 const all = function () {
   const allList = [];
@@ -625,5 +716,15 @@ const router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes: all()
 })
+
+// 添加全局导航守卫
+router.beforeEach((to, from, next) => {
+  // 清除可能存在的异步操作
+  if (window.asyncOperations) {
+    window.asyncOperations.forEach(op => clearTimeout(op));
+    window.asyncOperations = [];
+  }
+  next();
+});
 
 export default router
