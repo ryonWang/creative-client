@@ -316,7 +316,6 @@ const routerList = [
     path: '/home',
     component: Layout,
     children: [
-      // ... 其他已存在的路由配置 ...
       
       // 新增财务管理相关路由
       {
@@ -342,18 +341,36 @@ const routerList = [
   {
     path: '/aiDraw',
     component: Layout,
-    children:[
+    children: [
       {
         path: '',
-        name: 'AiDraw',
-        component: () => import('@/views/pages/aiDraw/index.vue'),
-        meta: { title: 'AIPhoto' }
+        name: 'AiDrawHome',
+        component: () => import('@/views/pages/aiDraw/home.vue')
       },
       {
-        path: 'rentai',
-        name: 'CreateRenTai',
-        component: () => import('@/views/pages/aiDraw/createRenTai.vue'),
-        meta: { title: '人台图制作' }
+        path: 'mannequin',
+        name: 'AiDrawMannequin',
+        component: () => import('@/views/pages/aiDraw/pages/mannequin/index.vue')
+      },
+      {
+        path: 'human',
+        name: 'AiDrawHuman',
+        component: () => import('@/views/pages/aiDraw/pages/human/index.vue')
+      },
+      {
+        path: 'shoes',
+        name: 'AiDrawShoes',
+        component: () => import('@/views/pages/aiDraw/pages/shoes/index.vue')
+      },
+      {
+        path: 'bags',
+        name: 'AiDrawBags',
+        component: () => import('@/views/pages/aiDraw/pages/bags/index.vue')
+      },
+      {
+        path: 'background',
+        name: 'AiDrawBackground',
+        component: () => import('@/views/pages/aiDraw/pages/background/index.vue')
       }
     ]
   },
@@ -464,7 +481,7 @@ const routerList = [
             component: () => import('@/views/pages/assistant/distribution/shop/Monitor.vue'),
             meta: { title: '店铺状态监控' }
           },
-          // 商品数据路由
+          // 商品数据由
           {
             path: 'product/data/import',
             name: 'ProductImport',
@@ -488,7 +505,7 @@ const routerList = [
             path: 'data/sync/erp',
             name: 'ErpSync',
             component: () => import('@/views/pages/assistant/data/sync/Erp.vue'),
-            meta: { title: '与ERP同步' }
+            meta: { title: '与ERP步' }
           },
           {
             path: 'data/sync/shop',
@@ -555,7 +572,7 @@ const routerList = [
             path: 'distribution/rule/product',
             name: 'ProductRule',
             component: () => import('@/views/pages/assistant/distribution/rule/Product.vue'),
-            meta: { title: '���品信息规则' }
+            meta: { title: '商品信息规则' }
           },
           
           {
@@ -627,11 +644,37 @@ const routerList = [
         }
       },
       {
+        path: "/digitalHuman/digital-avatar/create",
+        name: "CreateDigitalAvatar",
+        meta: { title: '创建数字人', activeMenu: '/digitalHuman/digital-avatar' },
+        component: () => import('@/views/pages/digital-human/digital-avatar/create')
+      },
+      {
         path: '/digitalHuman/voice',
         name: 'Voice',
         component: () => import('@/views/pages/digital-human/voice/index.vue'),
         meta: { 
           title: '声音',
+          keepAlive: true
+        }
+      },
+      {
+        path: '/digitalHuman/voice/create',
+        name: 'VoiceCreate',
+        component: () => import('@/views/pages/digital-human/voice/create.vue'),
+        meta: { 
+          title: '添加声音',
+          activeMenu: '/digitalHuman/voice',
+          keepAlive: true
+        }
+      },
+      {
+        path: '/digitalHuman/voice/edit',
+        name: 'VoiceEdit',
+        component: () => import('@/views/pages/digital-human/voice/edit.vue'),
+        meta: { 
+          title: '编辑声音',
+          activeMenu: '/digitalHuman/voice',
           keepAlive: true
         }
       },
@@ -673,24 +716,8 @@ const routerList = [
       }
     ]
   },
-  {
-    path: '/digitalHuman/voice/create',
-    name: 'VoiceCreate',
-    component: () => import('@/views/pages/digital-human/voice/create.vue'),
-    meta: { 
-      title: '添加声音',
-      keepAlive: true
-    }
-  },
-  {
-    path: '/digitalHuman/voice/edit',
-    name: 'VoiceEdit',
-    component: () => import('@/views/pages/digital-human/voice/edit.vue'),
-    meta: { 
-      title: '编辑声音',
-      keepAlive: true
-    }
-  }
+ 
+  
 ];
 
 // 修改路由跳转处理
@@ -700,8 +727,6 @@ VueRouter.prototype.push = function push(location) {
     if (err.name !== 'NavigationDuplicated') {
       throw err;
     }
-    // 返回 Promise.resolve 以避免报错
-    return Promise.resolve(err);
   });
 };
 
@@ -716,15 +741,5 @@ const router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes: all()
 })
-
-// 添加全局导航守卫
-router.beforeEach((to, from, next) => {
-  // 清除可能存在的异步操作
-  if (window.asyncOperations) {
-    window.asyncOperations.forEach(op => clearTimeout(op));
-    window.asyncOperations = [];
-  }
-  next();
-});
 
 export default router

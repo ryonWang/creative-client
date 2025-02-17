@@ -18,5 +18,9 @@ const getters = {
   resourcePromotionConfig: state => state.webConfig.resourcePromotionConfig,
   resourceAccountConfig: state => state.webConfig.resourceAccountConfig,
   streamResponseType: state => state.webConfig.resourceMain.streamResponseType,
+  currentTool: state => state.aiDraw.currentTool,
+  currentImages: state => state.aiDraw.currentImages,
+  processingStatus: state => state.aiDraw.processingStatus,
+  previewImage: state => state.aiDraw.previewImage
 }
 export default getters

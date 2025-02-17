@@ -237,8 +237,8 @@ export default {
   },
   methods: {
     handleCreate() {
-      // 创建数字人
-      console.log('创建数字人');
+      // 跳转到创建数字人页面
+      this.$router.push('/digitalHuman/digital-avatar/create');
     },
     handleEdit(item) {
       console.log('编辑数字人', item);

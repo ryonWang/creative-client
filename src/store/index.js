@@ -6,6 +6,7 @@ import userSocket from "/src/store/modules/userSocket";
 import status from "/src/store/modules/status";
 import webConfig from "@/store/modules/webConfig";
 import settings from "@/store/modules/setting";
+import aiDraw from './modules/aiDraw'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
     status,
     settings,
     webConfig,
-    userSocket
+    userSocket,
+    aiDraw
   },
   getters
 })

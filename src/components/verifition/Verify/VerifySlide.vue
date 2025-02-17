@@ -66,9 +66,9 @@ import { aesEncrypt } from './../utils/ase'
 import { resetSize } from './../utils/util'
 import { reqGet, reqCheck } from './../api/index'
 
-//  "captchaType":"blockPuzzle",
 export default {
   name: 'VerifySlide',
+  "captchaType":"blockPuzzle",
   props: {
     captchaType: {
       type: String,
@@ -353,6 +353,7 @@ export default {
         clientUid: localStorage.getItem('slider'),
         ts: Date.now(), // 现在的时间戳
       }
+      console.log(data)
       reqGet(data).then(res => {
         if (res.repCode == '0000') {
           this.backImgBase = res.repData.originalImageBase64
